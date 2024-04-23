@@ -27,7 +27,7 @@ namespace ListaDeContatosT7
 
                 else
                 {
-                    telefone = "00-00000-0000";
+                    telefone = "00 00000-0000";
                 }
             } 
         }
@@ -37,7 +37,7 @@ namespace ListaDeContatosT7
         {
             Nome = "José";
             Sobrenome = "Da Silva";
-            Telefone = "11-99999-9999";
+            Telefone = "11 99999-9999";
         }
 
         public contato(string nome, string sobrenome, string telefone)
@@ -52,7 +52,7 @@ namespace ListaDeContatosT7
         {
             string saida = string.Empty;
             saida += String.Format("{0}, {1}", Nome, Sobrenome);
-            saida += String.Format("({0}) {1}-{2}", Telefone.Substring(0, 1), Telefone.Substring(2, 5), Telefone.Substring(8, 4));
+            saida += String.Format("({0}) {1}-{2}", Telefone.Substring(0, 2), Telefone.Substring(2, 5), Telefone.Substring(7, 4));
             return saida;
         }
     }

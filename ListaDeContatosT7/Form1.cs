@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+
 
 namespace ListaDeContatosT7
 {
@@ -16,6 +18,59 @@ namespace ListaDeContatosT7
         {
             InitializeComponent();
         }
+
+        private contato[] contatos = new contato[0];
+
+        private void Escrever(contato contato)
+        {
+            StreamWriter escreverEmArquivos = new StreamWriter("Contatos.txt");
+            escreverEmArquivos.WriteLine(contatos.Length + 1);
+            escreverEmArquivos.WriteLine(contato.Nome);
+            escreverEmArquivos.WriteLine(contato.Telefone);
+
+            for (int i = 0; i < contatos.Length; i++) 
+            {
+                escreverEmArquivos.WriteLine(contatos[i].Nome);
+                escreverEmArquivos.WriteLine(contatos[i].Sobrenome);
+                escreverEmArquivos.WriteLine(contatos[i].Telefone);
+            }
+
+            escreverEmArquivos.Close();
+        }
+
+        private void Ler()
+        {
+            StreamReader lerArquivo = new StreamReader("Contato.txt");
+            contatos = new contato[Convert.ToInt32(lerArquivo.ReadLine())];
+
+            for (int i = 0; i < contatos.Length; i++)
+            {
+                contatos[i] = new contato();
+                contatos[i].Nome = lerArquivo.ReadLine();
+                contatos[i].Sobrenome = lerArquivo.ReadLine();
+                contatos[i].Telefone = lerArquivo.ReadLine();
+            }
+
+            lerArquivo.Close();
+        }
+
+        private void Exibir()
+        {
+            listBoxContatos.Items.Clear();
+
+            for (int i = 0; i < contatos.Length; i++)
+            {
+                listBoxContatos.Items.Add(contatos[i].ToString());
+            }
+        }
+
+        private void LimparFormulario()
+        {
+            textBoxNome.Text = String.Empty;
+            textBoxSobrenome.Text = String.Empty;
+            textBoxTelefone.Text = String.Empty;
+        }
+
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -48,7 +103,18 @@ namespace ListaDeContatosT7
             contato.Sobrenome = textBoxSobrenome.Text;
             contato.Telefone = textBoxTelefone.Text;
 
-            listBoxContatos.Items.Add(contato.ToString());
+            //listBoxContatos.Items.Add(contato.ToString());
+
+            Escrever(contato);
+            Ler();
+            Exibir();
+            LimparFormulario();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            Ler();
+            Exibir();  
         }
     }
 }

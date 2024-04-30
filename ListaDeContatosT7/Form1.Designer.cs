@@ -36,6 +36,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxTelefone = new System.Windows.Forms.TextBox();
             this.listBoxContatos = new System.Windows.Forms.ListBox();
+            this.buttonOrganizar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonIncluirContato
@@ -113,11 +114,22 @@
             this.listBoxContatos.Size = new System.Drawing.Size(358, 394);
             this.listBoxContatos.TabIndex = 8;
             // 
+            // buttonOrganizar
+            // 
+            this.buttonOrganizar.Location = new System.Drawing.Point(362, 392);
+            this.buttonOrganizar.Name = "buttonOrganizar";
+            this.buttonOrganizar.Size = new System.Drawing.Size(40, 38);
+            this.buttonOrganizar.TabIndex = 9;
+            this.buttonOrganizar.Text = "button1";
+            this.buttonOrganizar.UseVisualStyleBackColor = true;
+            this.buttonOrganizar.Click += new System.EventHandler(this.buttonOrganizar_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonOrganizar);
             this.Controls.Add(this.listBoxContatos);
             this.Controls.Add(this.textBoxTelefone);
             this.Controls.Add(this.label3);
@@ -143,6 +155,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxTelefone;
         private System.Windows.Forms.ListBox listBoxContatos;
+        private System.Windows.Forms.Button buttonOrganizar;
     }
 }
 

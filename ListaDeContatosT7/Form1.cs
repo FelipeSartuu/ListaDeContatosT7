@@ -26,6 +26,7 @@ namespace ListaDeContatosT7
             StreamWriter escreverEmArquivos = new StreamWriter("Contatos.txt");
             escreverEmArquivos.WriteLine(contatos.Length + 1);
             escreverEmArquivos.WriteLine(contato.Nome);
+            escreverEmArquivos.WriteLine(contato.Sobrenome);
             escreverEmArquivos.WriteLine(contato.Telefone);
 
             for (int i = 0; i < contatos.Length; i++) 
@@ -40,7 +41,7 @@ namespace ListaDeContatosT7
 
         private void Ler()
         {
-            StreamReader lerArquivo = new StreamReader("Contato.txt");
+            StreamReader lerArquivo = new StreamReader("Contatos.txt");
             contatos = new contato[Convert.ToInt32(lerArquivo.ReadLine())];
 
             for (int i = 0; i < contatos.Length; i++)
@@ -106,6 +107,7 @@ namespace ListaDeContatosT7
             //listBoxContatos.Items.Add(contato.ToString());
 
             Escrever(contato);
+            Organizar();
             Ler();
             Exibir();
             LimparFormulario();
@@ -115,6 +117,35 @@ namespace ListaDeContatosT7
         {
             Ler();
             Exibir();  
+        }
+
+        private void Organizar()
+        {
+            contato temporario;
+            bool troca = true;
+
+            do
+            {
+                troca = false;
+
+                for (int i = 0; i < contatos.Length - 1; i++)
+                {
+                    if (contatos[i].Nome.CompareTo(contatos[i + 1].Nome) > 0)
+                    {
+                        temporario = contatos[i];
+                        contatos[i] = contatos[i + 1];
+                        contatos[i + 1] = temporario;
+                        troca = true;
+                    }
+                }
+
+            } while (troca == true); 
+        }
+
+        private void buttonOrganizar_Click(object sender, EventArgs e)
+        {
+            Organizar();
+            Exibir();
         }
     }
 }
